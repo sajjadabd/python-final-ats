@@ -55,11 +55,23 @@ def check_keywords(pdf_file, keywords_file):
                         found = True
                     else :
                         break
-            keyword_existence[keyword] = {
-                'found' : found ,
-                'substring' : longest_substring
-            }
-        
+            
+            
+
+                if keyword in keyword_existence :
+                    if len(keyword_existence[keyword]['substring']) < len(longest_substring) :
+                        keyword_existence[keyword] = {
+                            'found' : found ,
+                            'substring' : longest_substring
+                        }
+                else :
+                    keyword_existence[keyword] = {
+                        'found' : found ,
+                        'substring' : longest_substring
+                    }
+                    
+                    
+                    
         if text != prevText :
             prevText = text
             file_changed = True
@@ -124,6 +136,8 @@ def reportATS(keyword_existence) :
     unmatched_words = 0
     total_words = 0
     
+    
+    
     for keyword in keyword_existence:
         counter += 1
         
@@ -176,10 +190,13 @@ def reportATS(keyword_existence) :
     
     #true_percentage = (trueCounter / counter) * 100
     #false_percentage = (falseCounter / counter) * 100
-    
-    true_percentage = ( matched_words / total_words ) * 100
-    false_percentage = ( unmatched_words / total_words ) * 100
-
+    try :
+        true_percentage = ( matched_words / total_words ) * 100
+        false_percentage = ( unmatched_words / total_words ) * 100
+    except :
+        true_percentage = 0
+        false_percentage = 0
+        
     # Print the table
     print("\nKeyword Occurrence Percentages:")
     print("+-----------------+----------------------+")
