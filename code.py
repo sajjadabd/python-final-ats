@@ -16,6 +16,7 @@ init(autoreset=True)
 file_changed = True
 
 prevText = ""
+prevKeywordsLength = 0
 text = ""
 
 
@@ -31,6 +32,7 @@ def check_keywords(pdf_file, keywords_file):
     global text
     global prevText
     global file_changed
+    global prevKeywordsLength
     
     try:
         pdf = PdfReader(pdf_file)
@@ -72,7 +74,8 @@ def check_keywords(pdf_file, keywords_file):
                     
                     
                     
-        if text != prevText :
+        if text != prevText or prevKeywordsLength != len(keywords) :
+            prevKeywordsLength = len(keywords)
             prevText = text
             file_changed = True
         else :
