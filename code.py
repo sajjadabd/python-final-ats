@@ -43,7 +43,7 @@ def check_keywords(pdf_file, keywords_file):
         keyword_existence = {}
         #print(keywords)
         for keyword in keywords:
-            target = keyword#.lower()
+            target = keyword.strip()
             found = False
             longest_substring = ""
             for page in pdf.pages:
