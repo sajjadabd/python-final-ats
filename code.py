@@ -252,6 +252,8 @@ def browse_files():
 browse_files()
 
 
+input()
+
 """
 # Create the tkinter window
 window = tk.Tk()
