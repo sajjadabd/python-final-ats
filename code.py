@@ -4,7 +4,7 @@ from PyPDF2 import PdfReader
 from colorama import Fore, init
 import os  # Import the os module
 import re 
-from threading import Timer
+#from threading import Timer
 
 
 # Initialize colorama for colored output
@@ -247,7 +247,7 @@ def browse_files():
 
     # Check if the files exist in the current directory
 
-    Timer(5.0, browse_files).start()
+    #Timer(5.0, browse_files).start()
 
 browse_files()
 
